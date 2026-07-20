@@ -1,0 +1,54 @@
+generated: '2026-07-18'
+method: searched
+source: >-
+  https://github.com/wacai/wacai-open-sdk,
+  https://github.com/wacai/wacai-open-sdk-php,
+  https://github.com/wacai/wacai-open-sdk-csharp,
+  https://github.com/wacai/wacai-gateway-sdk (SDK documentation)
+notes: >-
+  The Wacai Open Platform (挖财开放平台) does not publish an OpenAPI document, so this
+  profile is captured from the first-party SDK documentation rather than derived
+  from a spec. Access is via an app credential (app_key / app_secret) issued by
+  the open platform, with per-request HMAC signing. Older SDKs additionally use a
+  token service (access_token / refresh_token); the higher-version all-in-one SDK
+  connects directly to the gateway without a token.
+summary:
+  types:
+    - app-credential
+    - request-signature
+    - bearer-token
+  credential: app_key + app_secret (issued by the Wacai Open Platform)
+  signing: [MAC, RSA]
+  token_service: true
+schemes:
+  - name: app_key
+    type: apiKey
+    in: body
+    param: app_key
+    description: >-
+      Application key identifying the caller, issued on registration with the
+      Wacai Open Platform. Paired with app_secret for request signing.
+  - name: app_secret_signature
+    type: signature
+    algorithms: [MAC, RSA]
+    encoding: base64
+    description: >-
+      Every request to the API gateway is signed with app_secret. Default
+      algorithm is MAC (HMAC); RSA is supported via a configured public/private
+      key pair. Responses may optionally be signature-verified (验签), and payloads
+      optionally encrypted (DES) via the gateway SDK filter chain.
+  - name: access_token
+    type: bearer-token
+    obtained_via: wacai-token-sdk (TokenService.Get / TokenService.Refresh)
+    refreshable: true
+    description: >-
+      Token-based access used by older SDKs: an access_token is acquired from
+      app_key/app_secret and refreshed via refresh_token. The higher-version
+      all-in-one SDK bypasses the token and connects directly to the gateway.
+      Callers are advised to cache the token (memcache/redis) and to retry
+      requests themselves after an automatic token refresh.
+transport:
+  protocol: HTTPS
+  method: POST
+  content_type: application/json
+  encoding: UTF-8
