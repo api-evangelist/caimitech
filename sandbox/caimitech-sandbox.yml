@@ -1,0 +1,39 @@
+generated: '2026-07-18'
+method: searched
+source: >-
+  https://github.com/wacai/wacai-open-sdk,
+  https://github.com/wacai/wacai-open-sdk-go,
+  https://github.com/wacai/wacai-open-sdk-php,
+  https://github.com/wacai/wacai-open-sdk-csharp (SDK documentation)
+notes: >-
+  The Wacai Open Platform SDKs document a test/integration ("测试联调") environment
+  separate from production. Values below are published verbatim in the SDK
+  READMEs and demo code; none are invented. Credentials (app_key/app_secret) must
+  be requested from the Wacai Open Platform and are not published.
+environments:
+  - name: test
+    description: >-
+      Test / integration environment. The Java all-in-one SDK sets the gateway
+      entry URL explicitly for test; production omits this override.
+    gateway_entry_url: http://guard.ngrok.wacaiyun.com/gw/api_entry
+    configured_via: WacaiOpenApiClient.setGatewayEntryUrl(...)
+  - name: production
+    description: >-
+      Production gateway address is configured per integrator (README instructs
+      setting the production gateway/token address in config before go-live); the
+      production host is not published in the SDKs.
+test_operations:
+  - api_name: api.test.post.fixed
+    api_version: '1.0'
+    purpose: Demo/echo test API used across the Go, PHP, and C# SDK examples.
+    example_body: '{"uid":123,"name":"zy"}'
+  - api_name: wacai.order.delete
+    api_version: v2
+    purpose: Demo operation in the Java SDK example.
+    example_params:
+      card_id: '34121141242144'
+      apply_money: 10
+message_gateway_test:
+  example_topic: middleware.guard.cache
+  description: >-
+    Example topic used in the PHP message-gateway demo (pull + ack by msg_offset).

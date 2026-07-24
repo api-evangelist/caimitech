@@ -1,19 +1,50 @@
 aid: caimitech
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/caimitech.png
 name: caimitech
-description: caimitech is a company surfaced as a portfolio company of qiming and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  caimitech.com is the domain of Wacai (挖财, Hangzhou Wacai Network Technology
+  Co.), a Chinese personal-finance and wealth-management company founded in 2009
+  that offers accounting/bookkeeping apps, personal financial management (PFM)
+  tools, wealth-management services, and credit solutions. Its developer surface
+  is the Wacai Open Platform (挖财开放平台) — an HMAC-signed API gateway addressed by
+  (api_name, api_version) pairs rather than REST paths, with first-party client
+  SDKs in Java (published to Maven Central under com.wacai), Node.js, PHP, Go, and
+  C#, plus a separate topic-based message gateway (pull/ack). Access uses an
+  app_key/app_secret credential with MAC or RSA request signing and an optional
+  token service. No OpenAPI document is published; this profile was enriched from
+  the provider's public GitHub SDKs and package registries.
 url: https://raw.githubusercontent.com/api-evangelist/caimitech/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - qiming
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: enriched-from-open-platform-sdks
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
+- FinTech
+- Personal Finance
+- Wealth Management
+- Accounting
+- Credit
+- Open Platform
+- API Gateway
+- China
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -21,5 +52,32 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/caimitech-domain-security.yml
 - type: Website
   url: https://caimitech.com
+- type: Website
+  name: Wacai
+  url: https://www.wacai.com
+- type: GitHubOrganization
+  url: https://github.com/wacai
+- type: Documentation
+  name: Wacai Open Platform SDK docs
+  url: https://github.com/wacai/wacai-open-sdk
+- type: Packages
+  url: packages/caimitech-packages.yml
+- type: SDKs
+  url: packages/caimitech-packages.yml
+- type: Authentication
+  url: authentication/caimitech-authentication.yml
+- type: Conventions
+  url: conventions/caimitech-conventions.yml
+- type: Sandbox
+  url: sandbox/caimitech-sandbox.yml
+- type: LLMsTxt
+  url: llms/caimitech-llms.txt
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

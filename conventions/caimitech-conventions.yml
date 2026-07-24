@@ -1,0 +1,59 @@
+generated: '2026-07-18'
+method: searched
+source: >-
+  https://github.com/wacai/wacai-open-sdk,
+  https://github.com/wacai/wacai-open-sdk-php,
+  https://github.com/wacai/wacai-open-sdk-go,
+  https://github.com/wacai/wacai-gateway-sdk (SDK documentation)
+notes: >-
+  Cross-cutting request/response semantics for the Wacai Open Platform (挖财开放平台)
+  API gateway, captured from the first-party SDKs (no OpenAPI is published).
+transport:
+  protocol: HTTPS
+  method: POST                # all gateway calls are HTTP POST
+  content_type: application/json
+  encoding: UTF-8
+  success_http_code: 200      # normal responses return HTTP 200
+  error_http_code: 400        # abnormal responses return HTTP 400
+api_addressing:
+  style: named-operation
+  parameters:
+    - api_name    # e.g. "wacai.order.delete", "message.api.push", "api.test.post.fixed"
+    - api_version # e.g. "v2", "1.0", "1.1.1"
+  description: >-
+    Operations are addressed by an (api_name, api_version) pair passed in the
+    request envelope rather than by REST resource paths. Business parameters are
+    supplied as a JSON body.
+authentication:
+  ref: authentication/caimitech-authentication.yml
+  summary: app_key + app_secret with per-request MAC/RSA signing; optional token service.
+signing:
+  request_signature: required
+  algorithms: [MAC, RSA]
+  response_verification: optional   # 验签, off by default
+  payload_encryption: optional      # DES via gateway SDK filter, off by default
+error_handling:
+  envelope: WacaiOpenApiResponse
+  exception: WacaiOpenApiResponseException   # carries error code + message on failure
+  description: >-
+    Synchronous calls throw WacaiOpenApiResponseException on error, exposing the
+    gateway error code and message. Non-2xx gateway conditions surface as HTTP 400.
+messaging:
+  gateway: message gateway (消息网关, "baige")
+  model: pull + ack
+  cursor: msg_offset            # offset-based; consumer pulls one message then acks by offset
+  transport: [HTTP, WebSocket]
+  description: >-
+    A separate topic-based message gateway supports async delivery: consumers
+    pull a message for a topic, then acknowledge it by msg_offset. Not a
+    push/webhook model; topics are provider/consumer-defined.
+idempotency:
+  documented: false
+  notes: >-
+    No idempotency-key contract is documented by the SDKs. Retry-after-token-refresh
+    is explicitly left to the caller. No Idempotency pointer emitted (no fabrication).
+pagination:
+  documented: false
+  notes: >-
+    No REST pagination convention is published. The message gateway uses
+    offset-based cursoring (msg_offset) for message consumption.

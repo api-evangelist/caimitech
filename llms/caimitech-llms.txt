@@ -1,0 +1,35 @@
+# caimitech (Wacai / 挖财)
+
+> caimitech.com is the domain of Wacai (挖财, Hangzhou Wacai Network Technology Co.), a Chinese personal-finance and wealth-management company founded in 2009. Its developer surface is the Wacai Open Platform (挖财开放平台) — an HMAC-signed API gateway addressed by (api_name, api_version) pairs, with first-party client SDKs in Java, Node.js, PHP, Go, and C#, plus a topic-based message gateway. No OpenAPI document is published; this file is generated from the API Evangelist catalog and the provider's public SDKs.
+
+## Developer surface
+- [Wacai GitHub organization](https://github.com/wacai): first-party SDKs and infrastructure projects.
+- [Wacai Open Platform Java SDK](https://github.com/wacai/wacai-open-sdk): protocol, signing, and token docs (doc/*.md).
+- [API gateway SDK (Neptune)](https://github.com/wacai/wacai-gateway-sdk): filter-based signing/verification/encryption client.
+
+## SDKs / Packages
+- Java (Maven Central): com.wacai:wacai-openAllInOne-sdk 1.5.1 — https://mvnrepository.com/artifact/com.wacai/wacai-openAllInOne-sdk
+- Java (Maven Central): com.wacai:wacai-open-sdk 1.5.1
+- Java (Maven Central): com.wacai:wacai-token-sdk 1.5.1 — token service (access_token / refresh_token)
+- Java (Maven Central): com.wacai:wacai-file-client 1.0.4 — file gateway client
+- Node.js (GitHub source): https://github.com/wacai/wacai-open-sdk-node
+- PHP (GitHub source): https://github.com/wacai/wacai-open-sdk-php
+- Go (GitHub source): https://github.com/wacai/wacai-open-sdk-go
+- C# (GitHub source): https://github.com/wacai/wacai-open-sdk-csharp
+
+## Conventions
+- Transport: HTTPS, POST, application/json, UTF-8. Success = HTTP 200, error = HTTP 400.
+- Operations addressed by (api_name, api_version), e.g. wacai.order.delete v2; business params as JSON body.
+- Auth: app_key + app_secret with per-request MAC (default) or RSA signing; optional response verification and DES payload encryption; optional token service.
+- Message gateway: topic-based pull + ack (offset cursor); HTTP / WebSocket.
+
+## Repo artifacts
+- authentication/caimitech-authentication.yml — auth profile (app credential + signature + token).
+- conventions/caimitech-conventions.yml — gateway request/response semantics.
+- packages/caimitech-packages.yml — SDK / package index.
+- sandbox/caimitech-sandbox.yml — test gateway entry URL + test operations.
+- security/caimitech-domain-security.yml — TLS/DNS posture probe.
+
+## Website
+- https://caimitech.com
+- https://www.wacai.com

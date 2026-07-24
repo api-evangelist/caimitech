@@ -1,0 +1,108 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/wacai + Maven Central (com.wacai)
+notes: >-
+  caimitech.com is the domain of Wacai (挖财, Hangzhou Wacai Network Technology
+  Co.). Its developer surface is the "Wacai Open Platform" (挖财开放平台) API
+  gateway, with first-party client SDKs published from the github.com/wacai
+  organization. The Java SDKs are also published to Maven Central under the
+  com.wacai group; the Node.js / PHP / Go / C# SDKs are distributed as source
+  from GitHub (verified absent from npm, Packagist, pkg.go.dev, and NuGet as of
+  this run).
+packages:
+  - language: java
+    registry: maven-central
+    name: com.wacai:wacai-openAllInOne-sdk
+    version: 1.5.1
+    url: https://mvnrepository.com/artifact/com.wacai/wacai-openAllInOne-sdk
+    repo: https://github.com/wacai/wacai-open-sdk
+    install: |
+      <dependency>
+        <groupId>com.wacai</groupId>
+        <artifactId>wacai-openAllInOne-sdk</artifactId>
+        <version>1.5.1</version>
+      </dependency>
+    description: All-in-one Java client SDK for the Wacai Open Platform API gateway.
+    official: true
+  - language: java
+    registry: maven-central
+    name: com.wacai:wacai-open-sdk
+    version: 1.5.1
+    url: https://mvnrepository.com/artifact/com.wacai/wacai-open-sdk
+    repo: https://github.com/wacai/wacai-open-sdk
+    install: |
+      <dependency>
+        <groupId>com.wacai</groupId>
+        <artifactId>wacai-open-sdk</artifactId>
+        <version>1.5.1</version>
+      </dependency>
+    description: Java client SDK for the Wacai Open Platform.
+    official: true
+  - language: java
+    registry: maven-central
+    name: com.wacai:wacai-token-sdk
+    version: 1.5.1
+    url: https://mvnrepository.com/artifact/com.wacai/wacai-token-sdk
+    install: |
+      <dependency>
+        <groupId>com.wacai</groupId>
+        <artifactId>wacai-token-sdk</artifactId>
+        <version>1.5.1</version>
+      </dependency>
+    description: Token-service SDK (access_token / refresh_token) for the Wacai Open Platform.
+    official: true
+  - language: java
+    registry: maven-central
+    name: com.wacai:wacai-file-client
+    version: 1.0.4
+    url: https://mvnrepository.com/artifact/com.wacai/wacai-file-client
+    repo: https://github.com/wacai/wacai-file-client
+    install: |
+      <dependency>
+        <groupId>com.wacai</groupId>
+        <artifactId>wacai-file-client</artifactId>
+        <version>1.0.4</version>
+      </dependency>
+    description: File-gateway client (文件网关 client) for the Wacai Open Platform.
+    official: true
+  - language: javascript
+    registry: github
+    name: wacai-open-sdk-node
+    url: https://github.com/wacai/wacai-open-sdk-node
+    description: Node.js client SDK for the Wacai Open Platform (source distribution; not published to npm).
+    official: true
+  - language: php
+    registry: github
+    name: wacai-open-sdk-php
+    url: https://github.com/wacai/wacai-open-sdk-php
+    description: PHP client SDK for the Wacai Open Platform API gateway and message gateway (source distribution; not published to Packagist).
+    official: true
+  - language: go
+    registry: github
+    name: wacai-open-sdk-go
+    url: https://github.com/wacai/wacai-open-sdk-go
+    description: Golang client SDK (demo phase) for the Wacai Open Platform API gateway (source distribution; not published to pkg.go.dev).
+    official: true
+  - language: csharp
+    registry: github
+    name: wacai-open-sdk-csharp
+    url: https://github.com/wacai/wacai-open-sdk-csharp
+    description: C# client SDK for the Wacai Open Platform API gateway, including token service (source distribution; not published to NuGet).
+    official: true
+  - language: java
+    registry: maven-central
+    name: com.wacai:wacai-gtateway-sdk
+    version: 1.0.0
+    url: https://github.com/wacai/wacai-gateway-sdk
+    repo: https://github.com/wacai/wacai-gateway-sdk
+    install: |
+      <dependency>
+        <groupId>com.wacai</groupId>
+        <artifactId>wacai-gtateway-sdk</artifactId>
+        <version>1.0.0</version>
+      </dependency>
+    description: >-
+      Neptune API-gateway SDK (filter-based signing/verification/encryption over
+      OkHttp) for the Wacai Open Platform. artifactId is spelled
+      "wacai-gtateway-sdk" upstream.
+    official: true
